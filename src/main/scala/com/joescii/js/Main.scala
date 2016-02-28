@@ -23,6 +23,13 @@ object Main extends App {
   val boot = readJs("js/boot.js")
   val htmlUnitBoot = readJs("js/htmlunit_boot.js")
   val console = readJs("js/console.js")
+
+  val angular = readJs("angular/angular.js")
+  val angularMocks = readJs("angular/angular-mocks.js")
+
+
+  val app = readJs("angular/sample-app.js")
+  val appTests = readJs("angular/sample-test.js")
   val tests = readJs("js/tests.js")
 
   val client = new WebClient(BrowserVersion.CHROME)
@@ -59,6 +66,12 @@ object Main extends App {
   run(jasmine)
   run(console)
   run(htmlUnitBoot)
+  run(angular)
+  run(angularMocks)
+
+  run(app)
+  run(appTests)
+
   run(tests)
   run(("runner", "jasmine.getEnv().execute();"))
 }
