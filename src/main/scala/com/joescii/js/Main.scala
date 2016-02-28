@@ -2,7 +2,6 @@ package com.joescii.js
 
 import java.io.{InputStreamReader, BufferedReader}
 import java.net.URL
-import java.util.logging.LogManager
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage
 import com.gargoylesoftware.htmlunit.{WebConsole, ScriptException, BrowserVersion, WebClient}
@@ -35,7 +34,10 @@ object Main extends App {
   options.setHomePage(WebClient.URL_ABOUT_BLANK.toString())
   options.setJavaScriptEnabled(true)
 
-  client.getPage("file://C:/code/htmlunit-test-engine-poc/src/main/resources/blank.html")
+  val sep = System.getProperty("file.separator")
+  val cd = new java.io.File(".").getCanonicalPath.replaceAllLiterally(sep, "/")
+  val blankHtml = s"file://$cd/src/main/resources/blank.html"
+  client.getPage(blankHtml)
 
   val window = client.getCurrentWindow().getTopWindow
   val page:HtmlPage = window.getEnclosedPage().asInstanceOf[HtmlPage] // asInstanceOf because ... java...
