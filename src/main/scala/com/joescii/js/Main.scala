@@ -17,8 +17,6 @@ object Main extends App {
     (path, Stream.continually(r.readLine()).takeWhile(_ != null).mkString("\n"))
   }
 
-  System.setProperty("org.apache.commons.logging.simplelog.showShortLogname", "false")
-
   val jasmine = readJs("js/jasmine.js")
   val boot = readJs("js/boot.js")
   val htmlUnitBoot = readJs("js/htmlunit_boot.js")
