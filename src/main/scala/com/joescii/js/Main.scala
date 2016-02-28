@@ -2,9 +2,10 @@ package com.joescii.js
 
 import java.io.{InputStreamReader, BufferedReader}
 import java.net.URL
+import java.util.logging.LogManager
 
 import com.gargoylesoftware.htmlunit.html.HtmlPage
-import com.gargoylesoftware.htmlunit.{ScriptException, BrowserVersion, WebClient}
+import com.gargoylesoftware.htmlunit.{WebConsole, ScriptException, BrowserVersion, WebClient}
 import net.sourceforge.htmlunit.corejs.javascript.{ScriptableObject, Function => JsFunction}
 
 object Main extends App {
@@ -15,6 +16,8 @@ object Main extends App {
     val r = new BufferedReader(new InputStreamReader(urlFor(path).openStream()))
     (path, Stream.continually(r.readLine()).takeWhile(_ != null).mkString("\n"))
   }
+
+  System.setProperty("org.apache.commons.logging.simplelog.showShortLogname", "false")
 
   val jasmine = readJs("js/jasmine.js")
   val boot = readJs("js/boot.js")
@@ -49,6 +52,9 @@ object Main extends App {
 //      case e:ScriptException => println(e.getScriptSourceCode)
 //    }
   }
+
+  val c = new WebConsole()
+  c.warn("BLAH")
 
   run(jasmine)
   run(console)
