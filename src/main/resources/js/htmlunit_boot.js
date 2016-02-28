@@ -22,11 +22,9 @@
 
   jasmineReq.console(jasmineReq, window.jasmine);
 
-  var env = window.jasmine.getEnv();
-
-  var jasmineInterface = jasmineRequire.interface(window.jasmine, env);
-
-  extend(window, jasmineInterface);
+  env.addReporter(getJasmineRequireObj().ConsoleReporter()({
+    print: function(it){ console.log(it); }
+  }));
 
   function extend(destination, source) {
     for (var property in source) destination[property] = source[property];

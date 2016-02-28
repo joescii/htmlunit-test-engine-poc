@@ -54,5 +54,6 @@ object Main extends App {
   run(console)
   run(htmlUnitBoot)
   run(tests)
+  run(("runner", "jasmine.getEnv().execute();"))
 }
 
