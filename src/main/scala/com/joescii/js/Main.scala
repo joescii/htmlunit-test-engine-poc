@@ -13,7 +13,7 @@ object Main extends App {
   def urlFor(resource:String):URL = this.getClass.getClassLoader.getResource(resource)
   def readJs(path:String):JavaScript = {
     val r = new BufferedReader(new InputStreamReader(urlFor(path).openStream()))
-    (path, Stream.continually(r.readLine()).takeWhile(_ != null).mkString("\n"))
+    (path, Iterator.continually(r.readLine()).takeWhile(_ != null).mkString("\n"))
   }
 
   val jasmine = readJs("js/jasmine.js")
