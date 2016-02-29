@@ -23,7 +23,8 @@
   jasmineReq.console(jasmineReq, window.jasmine);
 
   env.addReporter(getJasmineRequireObj().ConsoleReporter()({
-    print: function(it){ console.log(it); }
+    print: function(it){ console.log(it); },
+    showColors: true
   }));
 
   function extend(destination, source) {
